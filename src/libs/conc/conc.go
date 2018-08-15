@@ -63,7 +63,6 @@ func (a *ArrayConcurrency) Run() {
 
 				a.ArrayData[j].SetWorked()
 
-				fmt.Print(process.Name + " sent")
 				c <- process.Worker(a.ArrayData[j])
 			}
 		}
@@ -72,7 +71,6 @@ func (a *ArrayConcurrency) Run() {
 			for {
 				data := <-c
 
-				fmt.Print(process.Name + " received")
 				process.Listener(data)
 			}
 		}
